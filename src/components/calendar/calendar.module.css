@@ -1,0 +1,36 @@
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background-color: #5ec89a;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  .day {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .day:hover {
+    background-color: #c1f3e0;
+  }
+  
+  .day:active {
+    background-color: #97e7cc;
+  }
+
+.hasTodos {
+    background-color: #6cb796;
+}
+
+.holiday{
+  background-color: #eb8e8e;
+}

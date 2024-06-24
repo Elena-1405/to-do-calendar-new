@@ -7,10 +7,9 @@ export interface CalendarProps {
     selectedDate: Date;
     todos: { [key: string]: ToDo[] };
     onDateClick: (date: Date) => void;
-    holidays: { [key: string]: boolean };
 }
 
-export const Calendar: React.FC<CalendarProps> = ({selectedDate, todos, onDateClick, holidays}) => {
+export const Calendar: React.FC<CalendarProps> = ({selectedDate, todos, onDateClick}) => {
     
 const formatDay = (date: Date): string => {
     return date.getDate().toString();
@@ -27,11 +26,8 @@ const days = eachDayOfInterval(start, end);
 const dayElement = days.map((day) => {
     const dayString = day.toISOString().split('T')[0];
     const hasTodos = todos[dayString] && todos[dayString].length > 0;
-    const isHoliday = holidays[dayString];
     const dayClassName = hasTodos 
     ? `${styles.day} ${styles.hasTodos}`
-    : isHoliday 
-    ? `${styles.day} ${styles.holiday}`
     : styles.day;
 
     return (

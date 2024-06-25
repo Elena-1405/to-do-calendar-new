@@ -1,0 +1,49 @@
+.todoItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  
+  .todoItemText {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+  
+  .removeButton {
+    background-color: #ff6347;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .removeButton:hover {
+    background-color: #d9534f;
+  }
+  
+  @media (max-width: 600px) {
+    .todoItem {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .todoItemText {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .removeButton {
+      align-self: flex-end;
+    }
+  }

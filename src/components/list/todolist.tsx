@@ -1,6 +1,9 @@
+// TodoList.tsx
+
 import React from 'react';
 import { TodoItem } from '../item/todoitem';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import styles from './todolist.module.css';  // Импортируйте стили
 
 interface TodoListProps {
     date: Date;
@@ -39,30 +42,28 @@ export const TodoList: React.FC<TodoListProps> = ({ date, todos, addTodo, remove
     };
 
     return (
-        <div>
+        <div className={styles.todoListContainer}>
             <h3>Задачи на {formattedDate}</h3>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
-            <input 
-                type='text'
-                {...register('title', { required: 'Заполните поле'})}
-                placeholder='title'
-                />
-                {errors.title && <div style={{color: 'red'}}>{errors.title.message}</div>}
+                    <input 
+                        type='text'
+                        {...register('title', { required: 'Заполните поле'})}
+                        placeholder='title'
+                        />
+                    {errors.title && <div style={{color: 'red'}}>{errors.title.message}</div>}
                 </div>
-            <button
-                type='submit'
-                >
-                    Add
-            </button>
+                <button type='submit'>
+                    Добавить
+                </button>
             </form>
-             <ul>
+            <ul>
                 {todos.map((todo, index) => (
                     <li key={index}>
                         <TodoItem
                           key={index}
-                          item={`${todo.title}` }
-                          onRemove={(() => handleRemoveTodo(index))}
+                          item={todo.title}
+                          onRemove={() => handleRemoveTodo(index)}
                         />
                     </li>
                 ))}

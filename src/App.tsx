@@ -63,13 +63,16 @@ function App() {
   return (
     <div className={styles.container}>
     <h1>Календарь и список задач</h1>
-    <select value={currentUser} onChange={handleUserChange}>
+    <div className={styles.selectContainer}>
+    <select className={styles.customSelect} value={currentUser} onChange={handleUserChange}>
       {users.map((user) => (
-        <option key={user} value={user}>
+        <option key={user} value={user} className={styles.option}>
           {user}
         </option>
       ))}
     </select>
+    <div className={styles.selectArrow}></div>
+  </div>
       <Calendar 
         selectedDate={selectedDate} 
         onDateClick={toggleModal} 

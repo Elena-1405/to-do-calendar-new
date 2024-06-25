@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './todoitem.module.css';
 
 interface TodoItemProps {
     item: string;
@@ -6,9 +7,10 @@ interface TodoItemProps {
 }
 
 export const TodoItem: React.FC<TodoItemProps> = ({item, onRemove}) => (
-    <div>
-        {item}
-        <button 
-            onClick={onRemove}>remove</button>
+    <div className={styles.todoItem}>
+        <span className={styles.todoItemText}>{item}</span>
+        <button
+            className={styles.removeButton} 
+            onClick={onRemove}>X</button>
     </div>
 );

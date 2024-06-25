@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TodoItem } from '../item/todoitem';
 import { SubmitHandler, useForm } from 'react-hook-form';
 

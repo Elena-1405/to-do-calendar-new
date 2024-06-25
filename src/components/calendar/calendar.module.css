@@ -1,36 +1,52 @@
+
+
 .calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 1px;
-    background-color: #5ec89a;
-    padding: 10px;
-    border-radius: 8px;
-  }
-
-  h2 {
-    margin-bottom: 10px;
-  }
-  
-  .day {
-    background-color: #fff;
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .day:hover {
-    background-color: #c1f3e0;
-  }
-  
-  .day:active {
-    background-color: #97e7cc;
-  }
-
-.hasTodos {
-    background-color: #6cb796;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #c6e9e3;
 }
 
-.holiday{
-  background-color: #eb8e8e;
+.weekDays {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.weekDay {
+  width: calc(100% / 7);
+  text-align: center;
+  font-weight: bold;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+}
+
+.day,
+.dayEmpty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  cursor: pointer;
+}
+
+.day {
+  border: 1px solid #ccc;
+}
+
+.day:hover {
+  background-color: #ace8de;
+}
+
+.hasTodos {
+  background-color: #82cec1;
+}
+
+.dayEmpty {
+  background-color: transparent;
 }

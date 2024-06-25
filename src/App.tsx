@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Calendar, CalendarProps } from '../src/components/calendar/calendar';
+import { Calendar } from '../src/components/calendar/calendar';
 import { TodoList, ToDo} from '../src/components/list/todolist';
 import { Modal } from '../src/components/modal/modal';
+import styles from './App.module.css';
 
 const users = ['user1', 'user2'];
 
@@ -13,7 +14,6 @@ function App() {
   });
   const [currentUser, setCurrentUser] = useState<string>('user1');
   const [ isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [ holidays, setHolidays ] = useState<{ [key: string]: boolean}>({});
 
 
   useEffect(() => {
@@ -61,7 +61,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className={styles.container}>
     <h1>Календарь и список задач</h1>
     <select value={currentUser} onChange={handleUserChange}>
       {users.map((user) => (
@@ -85,7 +85,7 @@ function App() {
           />
       </Modal>
       )}  
-    </>
+    </div>
   );
 }
 

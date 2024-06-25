@@ -32,8 +32,12 @@ export const Calendar: React.FC<CalendarProps> = ({ selectedDate, todos, onDateC
     const dayClassName = hasTodos ? `${styles.day} ${styles.hasTodos}`: styles.day;
 
     return (
-      <div className={dayClassName} key={day.toString()} onClick={() => onDateClick(day)}>
-        {format(day, 'd')}
+      <div 
+        className={dayClassName} 
+        key={day.toString()} 
+        onClick={() => onDateClick(day)}
+        >
+          {format(day, 'd')}
       </div>
     );
   });
@@ -43,7 +47,12 @@ export const Calendar: React.FC<CalendarProps> = ({ selectedDate, todos, onDateC
       <h2>{formattedDate}</h2>
       <div className={styles.weekDays}>
         {weekDays.map((day) => (
-          <div key={day} className={styles.weekDay}>{day}</div>
+          <div 
+            key={day} 
+            className={styles.weekDay}
+            >
+              {day}
+          </div>
         ))}
       </div>
       <div className={styles.days}>

@@ -48,8 +48,8 @@ export const TodoList: React.FC<TodoListProps> = ({ date, todos, addTodo, remove
                         type='text'
                         {...register('title', { required: 'Заполните поле'})}
                         placeholder='title'
-                        />
-                    {errors.title && <div style={{color: 'red'}}>{errors.title.message}</div>}
+                    />
+                        {errors.title && <div style={{color: 'red'}}>{errors.title.message}</div>}
                 </div>
                 <button type='submit'>
                     Добавить

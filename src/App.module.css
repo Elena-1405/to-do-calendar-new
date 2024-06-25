@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+h1 {
+  margin: 10px 0 5px 10px;
+
+}
+
 .container {
   margin:20px;
   background-color: #dbece9;
@@ -21,6 +26,8 @@
 .selectContainer {
   display: inline-block;
   position: relative;
+  margin: 10px 0 5px 10px;
+
 }
 
 .customSelect {
@@ -38,19 +45,6 @@
 .customSelect:focus {
   border-color: #66e9c2;
   outline: none;
-}
-
-.selectArrow {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  width: 0;
-  height: 0;
-  pointer-events: none;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid #333;
-  transform: translateY(-50%);
 }
 
 .option {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './todoitem.module.css';
 
 interface TodoItemProps {
@@ -6,11 +6,27 @@ interface TodoItemProps {
     onRemove: () => void;
 }
 
-export const TodoItem: React.FC<TodoItemProps> = ({item, onRemove}) => (
-    <div className={styles.todoItem}>
-        <span className={styles.todoItemText}>{item}</span>
+export const TodoItem: React.FC<TodoItemProps> = ({item, onRemove}) => {
+    const [ isComplete, setIsComplete ] = useState(false);
+
+    const toggleCompletion = () => {
+        setIsComplete(!isComplete);
+    };
+
+    return (
+        <div className={styles.todoItem}>
+            <span 
+                className={`${styles.todoItemText} ${isComplete ? styles.complete : ''}`}
+                onClick={toggleCompletion}
+            >
+                {item}
+            </span>
         <button
             className={styles.removeButton} 
-            onClick={onRemove}>X</button>
+            onClick={onRemove}
+        >
+            X
+        </button>
     </div>
-);
+    )
+};

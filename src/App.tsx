@@ -70,8 +70,7 @@ function App() {
           {user}
         </option>
       ))}
-    </select>
-    <div className={styles.selectArrow}></div>
+    </select> 
   </div>
       <Calendar 
         selectedDate={selectedDate} 

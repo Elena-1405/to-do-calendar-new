@@ -27,3 +27,31 @@
     font-size: 1.5rem;
     cursor: pointer;
   }
+
+  @media (max-width: 768px) {
+    .modal {
+      padding: 15px;
+      max-width: 400px;
+    }
+  
+    .closeButton {
+      font-size: 1.25rem;
+      top: 8px;
+      right: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .modal {
+      padding: 10px;
+      max-width: 300px;
+    }
+  
+    .closeButton {
+      font-size: 1rem;
+      top: 5px;
+      right: 5px;
+    }
+  }
+
+  

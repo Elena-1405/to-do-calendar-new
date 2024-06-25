@@ -1,6 +1,12 @@
 import React from 'react';
 import { ToDo } from '../list/todolist';
-import { startOfMonth, endOfMonth, eachDayOfInterval, getDay, format } from 'date-fns';
+import {
+  startOfMonth,
+  endOfMonth,
+  eachDayOfInterval,
+  getDay,
+  format,
+} from 'date-fns';
 import styles from './calendar.module.css';
 
 export interface CalendarProps {
@@ -9,7 +15,11 @@ export interface CalendarProps {
   onDateClick: (date: Date) => void;
 }
 
-export const Calendar: React.FC<CalendarProps> = ({ selectedDate, todos, onDateClick }) => {
+export const Calendar: React.FC<CalendarProps> = ({
+  selectedDate,
+  todos,
+  onDateClick,
+}) => {
   const start = startOfMonth(selectedDate);
   const end = endOfMonth(selectedDate);
   const days = eachDayOfInterval({ start, end });
@@ -29,15 +39,17 @@ export const Calendar: React.FC<CalendarProps> = ({ selectedDate, todos, onDateC
   const dayElements = days.map((day) => {
     const dayString = format(day, 'yyyy-MM-dd');
     const hasTodos = todos[dayString] && todos[dayString].length > 0;
-    const dayClassName = hasTodos ? `${styles.day} ${styles.hasTodos}`: styles.day;
+    const dayClassName = hasTodos
+      ? `${styles.day} ${styles.hasTodos}`
+      : styles.day;
 
     return (
-      <div 
-        className={dayClassName} 
-        key={day.toString()} 
+      <div
+        className={dayClassName}
+        key={day.toString()}
         onClick={() => onDateClick(day)}
-        >
-          {format(day, 'd')}
+      >
+        {format(day, 'd')}
       </div>
     );
   });
@@ -47,11 +59,8 @@ export const Calendar: React.FC<CalendarProps> = ({ selectedDate, todos, onDateC
       <h2>{formattedDate}</h2>
       <div className={styles.weekDays}>
         {weekDays.map((day) => (
-          <div 
-            key={day} 
-            className={styles.weekDay}
-            >
-              {day}
+          <div key={day} className={styles.weekDay}>
+            {day}
           </div>
         ))}
       </div>

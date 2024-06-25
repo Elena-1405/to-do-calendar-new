@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Calendar } from '../src/components/calendar/calendar';
-import { TodoList, ToDo} from '../src/components/list/todolist';
+import { TodoList, ToDo } from '../src/components/list/todolist';
 import { Modal } from '../src/components/modal/modal';
 import styles from './App.module.css';
 
@@ -8,13 +8,14 @@ const users = ['user1', 'user2'];
 
 function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [ todos, setTodos ] = useState<{ [key: string]: {[date: string]: ToDo[] }}>({
+  const [todos, setTodos] = useState<{
+    [key: string]: { [date: string]: ToDo[] };
+  }>({
     user1: {},
     user2: {},
   });
   const [currentUser, setCurrentUser] = useState<string>('user1');
-  const [ isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     localStorage.setItem(`todos_${currentUser}`, JSON.stringify(todos));
@@ -27,23 +28,25 @@ function App() {
     }
   }, [currentUser]);
 
-
   const addTodo = (date: Date, todo: ToDo) => {
     const dateString = date.toISOString().split('T')[0];
-    setTodos((prevTodos: { [x: string]: { [x: string]: any; }; }) => ({
-      ...prevTodos, [currentUser]: {
+    setTodos((prevTodos: { [x: string]: { [x: string]: any } }) => ({
+      ...prevTodos,
+      [currentUser]: {
         ...prevTodos[currentUser],
         [dateString]: [...(prevTodos[currentUser][dateString] || []), todo],
-      }  
+      },
     }));
   };
 
   const removeTodo = (date: Date, index: number) => {
-    const dateString= date.toISOString().split('T')[0];
-    setTodos((prevTodos: { [x: string]: any; }) => {
-      const userTodos = {...prevTodos[currentUser]};
+    const dateString = date.toISOString().split('T')[0];
+    setTodos((prevTodos: { [x: string]: any }) => {
+      const userTodos = { ...prevTodos[currentUser] };
       if (userTodos[dateString]) {
-        userTodos[dateString] = userTodos[dateString].filter((_: any, i: number) => i !== index);
+        userTodos[dateString] = userTodos[dateString].filter(
+          (_: any, i: number) => i !== index
+        );
       }
       return { ...prevTodos, [currentUser]: userTodos };
     });
@@ -52,7 +55,7 @@ function App() {
   const toggleModal = (date: Date) => {
     setSelectedDate(date);
     setIsModalOpen(!isModalOpen);
-  }
+  };
 
   const handleUserChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newUser = e.target.value;
@@ -64,34 +67,35 @@ function App() {
     <div className={styles.container}>
       <h1>Календарь и список задач</h1>
       <div className={styles.selectContainer}>
-        <select 
-          className={styles.customSelect}  
-          value={currentUser} 
+        <select
+          className={styles.customSelect}
+          value={currentUser}
           onChange={handleUserChange}
         >
-            {users.map((user) => (
+          {users.map((user) => (
             <option key={user} value={user} className={styles.option}>
               {user}
             </option>
-          ))
-        }
-        </select> 
-    </div>
-      <Calendar 
-        selectedDate={selectedDate} 
-        onDateClick={toggleModal} 
+          ))}
+        </select>
+      </div>
+      <Calendar
+        selectedDate={selectedDate}
+        onDateClick={toggleModal}
         todos={todos[currentUser]}
       />
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)}>
-          <TodoList 
+          <TodoList
             date={selectedDate}
-            todos={todos[currentUser][selectedDate.toISOString().split('T')[0]] || []} 
-            addTodo={(todo: ToDo) => addTodo(selectedDate, todo)} 
+            todos={
+              todos[currentUser][selectedDate.toISOString().split('T')[0]] || []
+            }
+            addTodo={(todo: ToDo) => addTodo(selectedDate, todo)}
             removeTodo={(index: number) => removeTodo(selectedDate, index)}
           />
-      </Modal>
-      )}  
+        </Modal>
+      )}
     </div>
   );
 }

@@ -10,7 +10,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({ item, onRemove }) => {
   const [isComplete, setIsComplete] = useState(false);
 
   const toggleCompletion = () => {
-    setIsComplete(!isComplete);
+    setIsComplete((prev) => !prev);
   };
 
   return (

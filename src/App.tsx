@@ -3,6 +3,7 @@ import { Calendar } from '../src/components/calendar/calendar';
 import { TodoList, ToDo } from '../src/components/list/todolist';
 import { Modal } from '../src/components/modal/modal';
 import styles from './App.module.css';
+import { formatISO } from 'date-fns';
 
 const users = ['user1', 'user2'];
 
@@ -10,7 +11,7 @@ function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [todos, setTodos] = useState<{
     [key: string]: { [date: string]: ToDo[] };
-  }>({
+  }>(JSON.parse(localStorage.getItem(`todos`) || '') || {
     user1: {},
     user2: {},
   });
@@ -18,18 +19,16 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    localStorage.setItem(`todos_${currentUser}`, JSON.stringify(todos));
-  }, [todos, currentUser]);
+    localStorage.setItem(`todos`, JSON.stringify(todos));
+  }, [todos]);
 
   useEffect(() => {
-    const savedTodos = localStorage.getItem(`todos_${currentUser}`);
-    if (savedTodos) {
-      setTodos(JSON.parse(savedTodos));
-    }
+    localStorage.setItem('currentUser', currentUser);
   }, [currentUser]);
 
   const addTodo = (date: Date, todo: ToDo) => {
-    const dateString = date.toISOString().split('T')[0];
+    //const dateString = date.toISOString().split('T')[0]; на моем компьютере срабатывает этот вариант, списки задач отображаются
+    const dateString = formatISO(date, { representation: 'date' })
     setTodos((prevTodos: { [x: string]: { [x: string]: any } }) => ({
       ...prevTodos,
       [currentUser]: {
@@ -40,7 +39,8 @@ function App() {
   };
 
   const removeTodo = (date: Date, index: number) => {
-    const dateString = date.toISOString().split('T')[0];
+    //const dateString = date.toISOString().split('T')[0]; на моем компьютере срабатывает этот вариант, списки задач отображаются
+    const dateString = formatISO(date, { representation: 'date' })
     setTodos((prevTodos: { [x: string]: any }) => {
       const userTodos = { ...prevTodos[currentUser] };
       if (userTodos[dateString]) {

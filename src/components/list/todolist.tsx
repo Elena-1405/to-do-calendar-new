@@ -1,7 +1,7 @@
 import React from 'react';
 import { TodoItem } from '../item/todoitem';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import styles from './todolist.module.css'; // Импортируйте стили
+import styles from './todolist.module.css';
 
 interface TodoListProps {
   date: Date;
